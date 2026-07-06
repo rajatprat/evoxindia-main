@@ -8,6 +8,7 @@ import {
   getPostBySlug,
   getPostDescription,
   getPostImage,
+  getPosts,
   getPostSitemapEntries,
   sanitizeHtml,
   SITE_URL,
@@ -18,7 +19,7 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const revalidate = 21600;
+export const revalidate = 300;
 export const dynamicParams = true;
 
 const formatDate = (date: string) =>
@@ -75,6 +76,9 @@ export default async function BlogPostPage({ params }: PageProps) {
   const description = getPostDescription(post);
   const image = getPostImage(post);
   const canonical = `${SITE_URL}/blog/${slug}`;
+  const relatedPosts = (await getPosts(6))
+    .filter((relatedPost) => relatedPost.slug !== slug)
+    .slice(0, 3);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -110,12 +114,56 @@ export default async function BlogPostPage({ params }: PageProps) {
               <p>{description}</p>
             </header>
 
-            {image && <img className="blog-featured-image" src={image} alt={title} />}
+            <div className="blog-article-layout">
+              <div className="blog-article-main">
+                {image && <img className="blog-featured-image" src={image} alt={title} />}
 
-            <div
-              className="blog-content"
-              dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content.rendered) }}
-            />
+                <div
+                  className="blog-content"
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content.rendered) }}
+                />
+              </div>
+
+              {relatedPosts.length > 0 && (
+                <aside className="blog-sidebar" aria-label="More articles">
+                  <span>More articles</span>
+                  {relatedPosts.map((relatedPost) => {
+                    const relatedTitle = stripHtml(relatedPost.title.rendered);
+
+                    return (
+                      <Link href={`/blog/${relatedPost.slug}`} key={relatedPost.id}>
+                        <img src={getPostImage(relatedPost)} alt={relatedTitle} />
+                        <strong>{relatedTitle}</strong>
+                        <small>{formatDate(relatedPost.date)}</small>
+                      </Link>
+                    );
+                  })}
+                </aside>
+              )}
+            </div>
+
+            {relatedPosts.length > 0 && (
+              <section className="blog-read-next" aria-label="Read next">
+                <div>
+                  <span>Read next</span>
+                  <h2>More EVOX insights</h2>
+                </div>
+                <div className="blog-read-next-grid">
+                  {relatedPosts.map((relatedPost) => {
+                    const relatedTitle = stripHtml(relatedPost.title.rendered);
+                    const relatedDescription = getPostDescription(relatedPost, 120);
+
+                    return (
+                      <Link href={`/blog/${relatedPost.slug}`} key={relatedPost.id}>
+                        <img src={getPostImage(relatedPost)} alt={relatedTitle} />
+                        <strong>{relatedTitle}</strong>
+                        <p>{relatedDescription}</p>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
           </div>
         </article>
       </main>

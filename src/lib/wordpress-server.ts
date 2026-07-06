@@ -34,7 +34,7 @@ const WORDPRESS_API_BASE = (
 ).replace(/\/$/, '');
 
 export const SITE_URL = (process.env.SITE_URL || process.env.URL || 'https://evoxindia.in').replace(/\/$/, '');
-export const BLOG_REVALIDATE_SECONDS = Number(process.env.BLOG_REVALIDATE_SECONDS || 21600);
+export const BLOG_REVALIDATE_SECONDS = Number(process.env.BLOG_REVALIDATE_SECONDS || 300);
 
 export function stripHtml(html = '') {
   return html
@@ -78,9 +78,12 @@ async function fetchWordPress<T>(path: string, params: Record<string, string> = 
     status: 'publish',
     ...params,
   });
-  const response = await fetch(`${WORDPRESS_API_BASE}${path}?${search}`, {
-    next: { revalidate: BLOG_REVALIDATE_SECONDS, tags: ['wordpress-posts'] },
-  });
+  const response = await fetch(
+    `${WORDPRESS_API_BASE}${path}?${search}`,
+    process.env.NODE_ENV === 'development'
+      ? { cache: 'no-store' }
+      : { next: { revalidate: BLOG_REVALIDATE_SECONDS, tags: ['wordpress-posts'] } },
+  );
 
   if (!response.ok) {
     throw new Error(`WordPress request failed: ${response.status}`);
@@ -99,9 +102,12 @@ export async function getPostSitemapEntries(limit = 50) {
     per_page: String(limit),
     _fields: 'id,slug,date,modified',
   });
-  const response = await fetch(`${WORDPRESS_API_BASE}/posts?${search}`, {
-    next: { revalidate: BLOG_REVALIDATE_SECONDS, tags: ['wordpress-posts'] },
-  });
+  const response = await fetch(
+    `${WORDPRESS_API_BASE}/posts?${search}`,
+    process.env.NODE_ENV === 'development'
+      ? { cache: 'no-store' }
+      : { next: { revalidate: BLOG_REVALIDATE_SECONDS, tags: ['wordpress-posts'] } },
+  );
 
   if (!response.ok) {
     throw new Error(`WordPress request failed: ${response.status}`);

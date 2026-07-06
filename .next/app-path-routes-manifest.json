@@ -1,9 +1,9 @@
 {
+  "/robots.txt/route": "/robots.txt",
   "/_not-found/page": "/_not-found",
   "/api/revalidate/route": "/api/revalidate",
-  "/robots.txt/route": "/robots.txt",
   "/sitemap.xml/route": "/sitemap.xml",
   "/[[...slug]]/page": "/[[...slug]]",
-  "/blog/[slug]/page": "/blog/[slug]",
-  "/blog/page": "/blog"
+  "/blog/page": "/blog",
+  "/blog/[slug]/page": "/blog/[slug]"
 }

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getPostSitemapEntries, SITE_URL } from '../lib/wordpress-server';
 
-export const revalidate = 21600;
+export const revalidate = 300;
 
 const staticRoutes = [
   ['', 'weekly', 1],
