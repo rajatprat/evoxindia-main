@@ -1,0 +1,6 @@
+{
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/blog/page": "app/blog/page.js",
+  "/blog/[slug]/page": "app/blog/[slug]/page.js",
+  "/[[...slug]]/page": "app/[[...slug]]/page.js"
+}

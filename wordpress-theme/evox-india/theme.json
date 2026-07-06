@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "950px",
+      "wideSize": "1440px"
+    },
+    "color": {
+      "palette": [
+        { "slug": "evox-red", "name": "EVOX Red", "color": "#e51b23" },
+        { "slug": "evox-ink", "name": "EVOX Ink", "color": "#090909" },
+        { "slug": "evox-paper", "name": "EVOX Paper", "color": "#f5f4f1" },
+        { "slug": "white", "name": "White", "color": "#ffffff" }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "slug": "evox-sans",
+          "name": "EVOX Sans",
+          "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, \"SF Pro Display\", \"Segoe UI\", sans-serif"
+        }
+      ]
+    },
+    "spacing": {
+      "units": ["px", "rem", "vw", "vh", "%"]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#f5f4f1",
+      "text": "#090909"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--evox-sans)"
+    },
+    "elements": {
+      "link": {
+        "color": { "text": "#e51b23" }
+      }
+    }
+  }
+}
