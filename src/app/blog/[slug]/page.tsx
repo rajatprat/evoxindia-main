@@ -29,6 +29,16 @@ const formatDate = (date: string) =>
     year: 'numeric',
   }).format(new Date(date));
 
+async function getRelatedPosts(slug: string) {
+  try {
+    return (await getPosts(6))
+      .filter((relatedPost) => relatedPost.slug !== slug)
+      .slice(0, 3);
+  } catch {
+    return [];
+  }
+}
+
 export async function generateStaticParams() {
   const posts = await getPostSitemapEntries(12);
   return posts.map((post) => ({ slug: post.slug }));
@@ -76,9 +86,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   const description = getPostDescription(post);
   const image = getPostImage(post);
   const canonical = `${SITE_URL}/blog/${slug}`;
-  const relatedPosts = (await getPosts(6))
-    .filter((relatedPost) => relatedPost.slug !== slug)
-    .slice(0, 3);
+  const relatedPosts = await getRelatedPosts(slug);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
