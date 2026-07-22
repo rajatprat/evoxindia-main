@@ -217,7 +217,7 @@ export function PremiumHome() {
           </blockquote>
           <div className="premium-proof-stats">
             <div><strong>10,000+</strong><span>professionals served</span></div>
-            <div><strong>15+</strong><span>years of experience</span></div>
+            <div><strong>6</strong><span>focused product launches</span></div>
             <div><strong>1 year</strong><span>product warranty</span></div>
           </div>
         </div>

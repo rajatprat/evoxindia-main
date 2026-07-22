@@ -5,11 +5,10 @@ import x1Mini from '../assets/x1-mini.png';
 import evoxUltra from '../assets/evox-ultra.png';
 
 const milestones = [
-  ['2018', 'EVOX India begins with a focus on professional communication technology.'],
-  ['2020', 'Body cameras and surveillance equipment join the product portfolio.'],
-  ['2021', 'ISO 9001:2015 certification reinforces our quality systems.'],
-  ['2023', 'The advanced X1 product family launches across India.'],
-  ['Today', 'EVOX supports teams across security, hospitality, retail and infrastructure.'],
+  ['2022', 'EVOX India is founded with a clear focus: dependable communication tools for teams that work on the move.'],
+  ['2023', 'X1 Pro and X1 Mini introduce the first EVOX radio lineup for practical daily coordination.'],
+  ['2024', 'X10 and X1 Ultra expand the range for teams that need stronger, more capable field communication.'],
+  ['2025', 'XC-19 and Super Mini PTT add recording and pocket-sized PMR options to complete the current portfolio.'],
 ];
 
 export function AboutPage() {
@@ -24,7 +23,7 @@ export function AboutPage() {
             <img src={x1Pro} alt="" />
             <img src={x1Mini} alt="" />
           </div>
-        } aside={<div className="inner-stat"><strong>15+</strong><span>years of industry experience</span></div>} /></div>}
+        } aside={<div className="inner-stat"><strong>2022</strong><span>founded to build practical field communication tools</span></div>} /></div>}
     >
       <section className="story-beliefs">
         <div className="premium-shell story-beliefs-grid">

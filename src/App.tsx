@@ -14,6 +14,7 @@ import { ProductDetailPageX1Mini } from './legacy-pages/ProductDetailPageX1Mini'
 import { ProductDetailPagePTTMini } from './legacy-pages/ProductDetailPagePTTMini';
 import { ProductDetailPageX10 } from './legacy-pages/ProductDetailPageX10';
 import { GetQuotePage } from './legacy-pages/GetQuotePage';
+import { PaidLandingPage } from './legacy-pages/PaidLandingPage';
 import { IndustriesPage } from './legacy-pages/IndustriesPage';
 import { FAQPage } from './legacy-pages/FAQPage';
 import { PrivacyPolicyPage } from './legacy-pages/PrivacyPolicyPage';
@@ -109,6 +110,7 @@ export default function App() {
             <Route path="/products/ptt-super-mini" element={<><ScrollToTop /><ProductDetailPagePTTMini /></>} />
             <Route path="/products/x10" element={<><ScrollToTop /><ProductDetailPageX10 /></>} />
             <Route path="/get-quote" element={<><ScrollToTop /><GetQuotePage /></>} />
+            <Route path="/landing/evox" element={<><ScrollToTop /><PaidLandingPage /></>} />
             <Route path="/industries" element={<><ScrollToTop /><IndustriesPage /></>} />
             <Route path="/faq" element={<><ScrollToTop /><FAQPage /></>} />
             <Route path="/blog" element={<><ScrollToTop /><BlogPage /></>} />

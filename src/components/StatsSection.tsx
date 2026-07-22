@@ -9,8 +9,8 @@ const stats = [
   },
   {
     icon: Award,
-    value: '15+',
-    label: 'Years Experience',
+    value: '2022',
+    label: 'Founded',
     gradient: 'from-purple-600 to-pink-600',
   },
   {
